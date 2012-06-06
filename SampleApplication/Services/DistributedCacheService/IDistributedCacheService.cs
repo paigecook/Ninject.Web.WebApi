@@ -17,10 +17,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System;
+
 namespace SampleApplication.Services.DistributedCacheService
 {
-    using System;
-
     /// <summary>
     /// A distributed cache service.
     /// </summary>

@@ -17,10 +17,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using Ninject.Modules;
+
 namespace SampleApplication.Services.PriceingService
 {
-    using Ninject.Modules;
-
     /// <summary>
     /// The ninject binding module for the priceing service.
     /// </summary>
@@ -31,7 +31,7 @@ namespace SampleApplication.Services.PriceingService
         /// </summary>
         public override void Load()
         {
-            this.Bind<IPriceingService>().To<PriceingService>();
+            this.Bind<IPriceingService>().To<SampleApplication.Services.PriceingService.PriceingService>();
         }
     }
 }

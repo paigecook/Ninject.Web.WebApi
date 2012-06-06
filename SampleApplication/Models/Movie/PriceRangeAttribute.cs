@@ -17,13 +17,13 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System;
+using System.ComponentModel.DataAnnotations;
+using Ninject;
+using SampleApplication.Services.PriceingService;
+
 namespace SampleApplication.Models.Movie
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using Ninject;
-    using SampleApplication.Services.PriceingService;
-
     /// <summary>
     /// Vaildation attribute that verifies that the price is in the range given by the priceing service.
     /// Used to demonstrate injection of validation attributes.

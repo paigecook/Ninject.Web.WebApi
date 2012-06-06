@@ -17,18 +17,16 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using SampleApplication.Services.DistributedCacheService;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web.Http.Controllers;
+using Ninject.Web.WebApi.Filter;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Web.Http.Controllers;
-
-    using Ninject.Web.WebApi.Filter;
-
-    using SampleApplication.Services.DistributedCacheService;
-
     /// <summary>
     /// A filter that caches the result of an action in a distributed cache.
     /// </summary>
@@ -96,7 +94,7 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         /// <param name="actionExecutedContext">The action executed context.</param>
         public override void OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext actionExecutedContext)
         {
-            var resultContent = actionExecutedContext.Result.Content.ReadAsStreamAsync();
+            var resultContent = actionExecutedContext.ActionContext.Response.Content.ReadAsStreamAsync();
             resultContent.Wait();
             var stream = resultContent.Result;
             stream.Position = 0;
@@ -107,11 +105,11 @@ namespace SampleApplication.Controllers.FilterInjectionExample
                 GetKey(actionExecutedContext.ActionContext.ActionDescriptor),
                 new Response
                     {
-                        StatusCode = actionExecutedContext.Result.StatusCode,
-                        ReasonPhrase = actionExecutedContext.Result.ReasonPhrase,
-                        Version = actionExecutedContext.Result.Version,
+                        StatusCode = actionExecutedContext.ActionContext.Response.StatusCode,
+                        ReasonPhrase = actionExecutedContext.ActionContext.Response.ReasonPhrase,
+                        Version = actionExecutedContext.ActionContext.Response.Version,
                         Content = content,
-                        ContentType = actionExecutedContext.Result.Content.Headers.ContentType,
+                        ContentType = actionExecutedContext.ActionContext.Response.Content.Headers.ContentType,
                 },
                 this.expirationTime);
         }

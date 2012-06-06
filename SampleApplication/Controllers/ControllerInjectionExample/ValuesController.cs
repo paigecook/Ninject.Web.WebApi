@@ -19,13 +19,12 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Web.Http;
+using SampleApplication.Services.ValuesService;
+
 namespace SampleApplication.Controllers.ControllerInjectionExample
 {
-    using System.Collections.Generic;
-    using System.Web.Http;
-
-    using SampleApplication.Services.ValuesService;
-
     /// <summary>
     /// Controller for the values
     /// </summary>

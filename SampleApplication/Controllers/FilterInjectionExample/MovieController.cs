@@ -19,14 +19,13 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using SampleApplication.Models.Movie;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Http;
-
-    using SampleApplication.Models.Movie;
-
     /// <summary>
     /// Controller for the movies
     /// </summary>

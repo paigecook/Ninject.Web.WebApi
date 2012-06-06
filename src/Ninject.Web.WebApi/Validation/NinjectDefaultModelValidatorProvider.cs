@@ -50,23 +50,24 @@ namespace Ninject.Web.WebApi.Validation
         {
             this.kernel = kernel;
             this.defaultModelValidatorProviders = defaultModelValidatorProviders.ToList();
-            DataAnnotationsModelValidatorProvider.RegisterDefaultAdapterFactory(
-                ((metadata, context, attribute) =>
-                    {
-                        this.kernel.Inject(attribute);
-                        return (ModelValidator)new DataAnnotationsModelValidator(metadata, context, attribute);
-                    }));
+            var dataAnnotationsModelValidatorProvider = new DataAnnotationsModelValidatorProvider();
+            dataAnnotationsModelValidatorProvider.RegisterDefaultAdapterFactory(
+                ((modelValidatorProviders, attribute) =>
+                {
+                    this.kernel.Inject(attribute);
+                    return (ModelValidator)new DataAnnotationsModelValidator(modelValidatorProviders, attribute);
+                }));
         }
 
         /// <summary>
         /// Gets the validators.
         /// </summary>
         /// <param name="metadata">The metadata.</param>
-        /// <param name="actionContext">The action context.</param>
+        /// <param name="validatorProviders">The validator providers.</param>
         /// <returns>The validators returned by the default validator providers.</returns>
-        public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, HttpActionContext actionContext)
+        public override IEnumerable<ModelValidator> GetValidators(ModelMetadata metadata, IEnumerable<ModelValidatorProvider> validatorProviders)
         {
-            var validators = this.defaultModelValidatorProviders.SelectMany(provider => provider.GetValidators(metadata, actionContext)).ToList();
+            var validators = this.defaultModelValidatorProviders.SelectMany(provider => provider.GetValidators(metadata, validatorProviders)).ToList();
             foreach (var modelValidator in validators)
             {
                 this.kernel.Inject(modelValidator);

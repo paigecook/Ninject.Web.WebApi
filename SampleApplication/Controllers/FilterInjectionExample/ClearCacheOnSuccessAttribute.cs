@@ -17,14 +17,12 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using SampleApplication.Services.DistributedCacheService;
+using System.Web.Http.Filters;
+using Ninject;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System.Web.Http.Filters;
-
-    using Ninject;
-
-    using SampleApplication.Services.DistributedCacheService;
-
     /// <summary>
     /// Specifies that on successful execution the cached result of the action specified is cleared. 
     /// </summary>
@@ -60,7 +58,7 @@ namespace SampleApplication.Controllers.FilterInjectionExample
         /// <param name="actionExecutedContext">The action executed context.</param>
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            if (actionExecutedContext.Result.IsSuccessStatusCode)
+            if (actionExecutedContext.ActionContext.Response.IsSuccessStatusCode)
             {
                 this.CacheService.ClearEntry(string.Format(
                     "{0}.{1}",

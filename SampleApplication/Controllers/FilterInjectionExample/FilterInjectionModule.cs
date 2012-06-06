@@ -17,21 +17,18 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using SampleApplication.Models.Movie;
+using SampleApplication.Services.DistributedCacheService;
+using System.Linq;
+using System.Web.Http.Filters;
+using log4net;
+using Ninject.Activation;
+using Ninject.Modules;
+using Ninject.Web.WebApi.Filter;
+using Ninject.Web.WebApi.FilterBindingSyntax;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System.Linq;
-    using System.Web.Http.Filters;
-
-    using log4net;
-
-    using Ninject.Activation;
-    using Ninject.Modules;
-    using Ninject.Web.WebApi.Filter;
-    using Ninject.Web.WebApi.FilterBindingSyntax;
-
-    using SampleApplication.Models.Movie;
-    using SampleApplication.Services.DistributedCacheService;
-
     /// <summary>
     /// The ninject module for the filter injection example controller.
     /// </summary>

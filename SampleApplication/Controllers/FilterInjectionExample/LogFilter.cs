@@ -17,14 +17,12 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System.Web.Http.Controllers;
+using log4net;
+using Ninject.Web.WebApi.Filter;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System.Web.Http.Controllers;
-
-    using log4net;
-
-    using Ninject.Web.WebApi.Filter;
-
     /// <summary>
     /// A filter that loggs an actions.
     /// </summary>

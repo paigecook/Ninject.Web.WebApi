@@ -17,10 +17,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System;
+
 namespace SampleApplication.Services.DistributedCacheService
 {
-    using System;
-
     /// <summary>
     /// The date time provider.
     /// </summary>

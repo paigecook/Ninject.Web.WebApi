@@ -76,6 +76,7 @@
     <Compile Include="Filter\INinjectFilter.cs" />
     <Compile Include="Filter\NinjectFilter.cs" />
     <Compile Include="Filter\NinjectFilterProvider.cs" />
+    <Compile Include="NinjectScope.cs" />
     <Compile Include="Validation\NinjectDataAnnotationsModelValidatorProvider.cs" />
     <Compile Include="Validation\NinjectDefaultModelValidatorProvider.cs" />
     <Compile Include="WebApiModule.cs" />

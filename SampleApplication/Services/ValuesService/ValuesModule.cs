@@ -19,10 +19,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using Ninject.Modules;
+
 namespace SampleApplication.Services.ValuesService
 {
-    using Ninject.Modules;
-
     /// <summary>
     /// Module for the values provider
     /// </summary>

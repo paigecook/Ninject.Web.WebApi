@@ -1,4 +1,4 @@
-//-------------------------------------------------------------------------------
+﻿//-------------------------------------------------------------------------------
 // <copyright file="NinjectDependencyResolver.cs" company="bbv Software Services AG">
 //   Copyright (c) 2012 bbv Software Services AG
 //   Author: Remo Gloor (remo.gloor@gmail.com)
@@ -19,51 +19,21 @@
 
 namespace Ninject.Web.WebApi
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Http.Services;
-    using Ninject.Parameters;
-    using Ninject.Syntax;
+    using System.Web.Http.Dependencies;
 
-    /// <summary>
-    /// Dependency resolver implementation for ninject.
-    /// </summary>
-    public class NinjectDependencyResolver : IDependencyResolver
+    public class NinjectDependencyResolver : NinjectScope, IDependencyResolver
     {
-        /// <summary>
-        /// The resolution root used to resolve dependencies.
-        /// </summary>
-        private readonly IResolutionRoot resolutionRoot;
+        private IKernel _kernel;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Ninject.Web.WebApi.NinjectDependencyResolver"/> class.
-        /// </summary>
-        /// <param name="resolutionRoot">The resolution root.</param>
-        public NinjectDependencyResolver(IResolutionRoot resolutionRoot)
+        public NinjectDependencyResolver(IKernel kernel)
+            : base(kernel)
         {
-            this.resolutionRoot = resolutionRoot;
+            _kernel = kernel;
         }
 
-        /// <summary>
-        /// Gets the service of the specified type.
-        /// </summary>
-        /// <param name="serviceType">The type of the service.</param>
-        /// <returns>The service instance or <see langword="null"/> if none is configured.</returns>
-        public object GetService(Type serviceType)
+        public IDependencyScope BeginScope()
         {
-            var request = this.resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
-            return this.resolutionRoot.Resolve(request).SingleOrDefault();
-        }
-
-        /// <summary>
-        /// Gets the services of the specifies type.
-        /// </summary>
-        /// <param name="serviceType">The type of the service.</param>
-        /// <returns>All service instances or an empty enumerable if none is configured.</returns>
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            return this.resolutionRoot.GetAll(serviceType).ToList();
+            return new NinjectScope(_kernel.BeginBlock());
         }
     }
 }

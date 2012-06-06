@@ -17,10 +17,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using Ninject.Modules;
+
 namespace SampleApplication.Services.DistributedCacheService
 {
-    using Ninject.Modules;
-
     /// <summary>
     /// The ninject binding module of the distributed cache service.
     /// </summary>

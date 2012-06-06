@@ -21,6 +21,7 @@ namespace Ninject.Web.WebApi
 {
     using System.Web;
     using System.Web.Http;
+    using System.Web.Http.Dependencies;
     using System.Web.Http.Services;
     using System.Web.Http.Validation.Providers;
 
@@ -63,7 +64,7 @@ namespace Ninject.Web.WebApi
         /// </summary>
         public void Start()
         {
-            GlobalConfiguration.Configuration.ServiceResolver.SetResolver(this.CreateDependencyResolver());
+            GlobalConfiguration.Configuration.DependencyResolver = this.CreateDependencyResolver();
         }
 
         /// <summary>

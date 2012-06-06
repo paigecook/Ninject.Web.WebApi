@@ -17,10 +17,10 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System;
+
 namespace SampleApplication.Controllers.FilterInjectionExample
 {
-    using System;
-
     /// <summary>
     /// Attribute to specify that the result shall be cached.
     /// </summary>

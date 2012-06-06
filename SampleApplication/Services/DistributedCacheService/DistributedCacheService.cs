@@ -17,11 +17,11 @@
 // </copyright>
 //-------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
 namespace SampleApplication.Services.DistributedCacheService
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// The distributed cache service.
     /// </summary>
