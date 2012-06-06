@@ -28,6 +28,11 @@ namespace Ninject.Web.WebApi
     using Ninject.Activation;
     using Ninject.Parameters;
 
+    /// <summary>
+    /// This class is taken from the following:
+    /// https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API/ and modified based on comments on 
+    /// http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/
+    /// </summary>
     public class NinjectScope : IDependencyScope
     {
         private IResolutionRoot _resolutionRoot;
@@ -48,10 +53,13 @@ namespace Ninject.Web.WebApi
             IRequest request = _resolutionRoot.CreateRequest(serviceType, null, new Parameter[0], true, true);
             return _resolutionRoot.Resolve(request).ToList();
         }
-
+        /// <summary>
+        /// Do Nothing...
+        /// Do not want to ASP.NET MVC to handle per-request scoping 
+        /// Ninject already handles this for us.
+        /// </summary>
         public void Dispose()
         {
-            //Do Nothing...Do not want to dispose of the Ninject kernel
         }
     }
 

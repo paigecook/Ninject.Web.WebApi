@@ -20,7 +20,12 @@
 namespace Ninject.Web.WebApi
 {
     using System.Web.Http.Dependencies;
-
+    
+    /// <summary>
+    /// This class is taken from the following:
+    /// https://github.com/filipw/Ninject-resolver-for-ASP.NET-Web-API/ and modified based on comments on 
+    /// http://www.strathweb.com/2012/05/using-ninject-with-the-latest-asp-net-web-api-source/
+    /// </summary>
     public class NinjectDependencyResolver : NinjectScope, IDependencyResolver
     {
         private IKernel _kernel;
@@ -33,7 +38,7 @@ namespace Ninject.Web.WebApi
 
         public IDependencyScope BeginScope()
         {
-            return new NinjectScope(_kernel.BeginBlock());
+            return new NinjectScope(_kernel);
         }
     }
 }
