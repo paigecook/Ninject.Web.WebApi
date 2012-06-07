@@ -38,7 +38,7 @@ namespace Ninject.Web.WebApi
 
         public IDependencyScope BeginScope()
         {
-            return new NinjectScope(_kernel);
+            return this;
         }
     }
 }
